@@ -1,46 +1,48 @@
-import math
 import tkinter as tk
 
 # fen creation
 
 fen=tk.Tk()
 fen.title("Calculator")
-fen.geometry("400x600")
-
-Zone=tk.Canvas(fen, width=400, height=600, bg="white")
+# fen.minsize(200,200)
 
 # Buttons
 
-Buttons=["7","8","9","/",
-         "4","5","6","*",
-         "1","2","3","+",
-         "="]
+buttons=["7","8","9","/","4","5","6","*","1","2","3","+","0",".","C","-","="]
 
 # Functions
 
-def sketch_calc():
-    return
+def click(text_button):
+    current = entry.get()
+    if text_button == "=":
+        try:
+            result = str(eval(current))
+            entry.delete(0, tk.END)
+            entry.insert(0, result)
+        except Exception as e:
+            entry.delete(0, tk.END)
+            entry.insert(0, "Erreur")
+    elif text_button == "C":
+        entry.delete(0, tk.END)
+    else:
+        entry.insert(tk.END, text_button)
 
-def addition(nombre):
-    return
-
-def soustraction():
-    return
-
-def division():
-    return
-
-def multiplication():
-    return
 
 # Entry
 
-entry= tk.Entry(fen, width=16, font=("Arial", 24),borderwidth=2, relief="solid")
-entry.grid(row=0, column=0, columnspan=1)
+entry= tk.Entry(fen, width=18, font=("Arial", 18),borderwidth=2, relief="raised")
+entry.grid(row=0, column=0, columnspan=3)
 
-# Principal Program
+# window creation
 
-addition()
-
+rowValue = 1
+colValue = 0
+for button in buttons:
+    temp = lambda x=button: click(x)
+    tk.Button(fen, text=button, width=5, height=2, font=("Arial", 18), command=temp,borderwidth=5,relief="ridge",activebackground="#c7ceff", background="#dbf0ff").grid(row=rowValue, column=colValue)
+    colValue += 1
+    if colValue > 3:
+        colValue = 0
+        rowValue += 1
 
 fen.mainloop()
