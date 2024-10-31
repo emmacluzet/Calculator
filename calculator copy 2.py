@@ -53,26 +53,33 @@ def click(button_text):
             entry.insert(0, "Erreur")
     elif button_text == "^":
         entry.insert(tk.END, "**")
-    elif button_text == "x²":
+    elif button_text == "exp":
         try:
-            result = str(float(entry.get*entry.get))
+            result = str(math.exp(float(entry.get())))
             entry.delete(0, tk.END)
             entry.insert(0, result)
         except:
             entry.delete(0, tk.END)
-            entry.insert(0, "Erreur") 
-
+            entry.insert(0, "Erreur")
+    elif button_text == "π":
+        try:
+            result = str("%.6f"%math.pi)
+            entry.delete(0, tk.END)
+            entry.insert(0, result)
+        except:
+            entry.delete(0, tk.END)
+            entry.insert(0, "Erreur")
+    elif button_text == "n!":
+        try:
+            result = str(math.factorial(int(entry.get())))
+            entry.delete(0, tk.END)
+            entry.insert(0, result)
+        except:
+            entry.delete(0, tk.END)
+            entry.insert(0, "Erreur")
     else:
         entry.insert(tk.END, button_text)
 
-"""elif button_text == "π":
-        try:
-            result = str(math.factorial(float(entry.get)))
-            entry.delete(0, tk.END)
-            entry.insert(0, result)
-        except:
-            entry.delete(0, tk.END)
-            entry.insert(0, "Erreur")"""
 
 # Fenêtre principale
 window = tk.Tk()
@@ -90,7 +97,7 @@ button_colors = {"number": "pink", "operator": "#F3F3F3", "function": "#ff70a6",
 # Configuration des boutons
 buttons = [
     ("7", "number"), ("8", "number"), ("9", "number"), ("/", "operator"), ("sin", "function"), ("cos", "function"), ("n!", "function"),
-    ("4", "number"), ("5", "number"), ("6", "number"), ("*", "operator"), ("tan", "function"), ("√", "function"), ("x²", "function"),
+    ("4", "number"), ("5", "number"), ("6", "number"), ("*", "operator"), ("tan", "function"), ("√", "function"), ("exp", "function"),
     ("1", "number"), ("2", "number"), ("3", "number"), ("-", "operator"), ("ln", "function"), ("log", "function"), ("π", "function"),
     ("0", "number"), (".", "number"), ("C", "clear"), ("+", "operator"), ("^", "operator"), ("=", "equals")
 ]
